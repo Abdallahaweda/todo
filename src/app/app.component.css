@@ -1,0 +1,16 @@
+.form-control {
+  border: 1px solid black !important;
+}
+
+.rounded-btn {
+  border-radius: 20px;
+}
+/* 
+body {
+  background: rgb(220, 221, 223);
+  background: radial-gradient(
+    circle,
+    rgba(246, 242, 244, 1) 0%,
+    rgba(220, 221, 223, 1) 100%
+  );
+} */

@@ -1,0 +1,130 @@
+<div
+  class="container-sm bg-light pt-3 border rounded mt-5 shadow position-absolute top-50 start-50 translate-middle"
+>
+  <div class="mt-2 p-1 bg-secondary text-white rounded text-center">
+    <h1>Todo</h1>
+    <!-- <p>Advance Version With Filter</p> -->
+  </div>
+  <div class="row d-flex justify-content-center flex-column">
+    <div class="row d-flex justify-content-center">
+      <div class="col-5 pt-2 w-75">
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="taskObj.taskName"
+          placeholder="Task Name"
+        />
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center">
+      <div class="col-12 w-75 pt-2">
+        <textarea
+          class="form-control"
+          rows="3"
+          [(ngModel)]="taskObj.taskDescription"
+          placeholder="Task description"
+        ></textarea>
+      </div>
+    </div>
+    <div class="row pt-2 flex-column align-items-center">
+      <div class="row w-50">
+        <input
+          type="date"
+          id="textDate"
+          class="form-control"
+          [(ngModel)]="taskObj.dueDate"
+          placeholder="Due Date"
+        />
+      </div>
+      <!-- <div class="col-6">
+        <input
+          type="text"
+          [(ngModel)]="taskObj.tags"
+          placeholder="Enter Comma Seperated tags"
+          class="form-control"
+        />
+      </div> -->
+      <div class="row w-auto mt-3">
+        @if (taskObj.itemId ==0) {
+
+        <button class="btn btn-primary" (click)="addTask()">Add Task</button>
+        }@else {
+        <button class="btn btn-success" (click)="updateTask()">Update</button>
+
+        }
+      </div>
+    </div>
+  </div>
+  <!-- <div class="row pt-4">
+    <div class="col">
+      <button class="btn btn-primary btn-sm">Filter By Tags</button>
+      <button class="btn btn-secondary btn-sm">Show All</button>
+      <button class="btn btn-secondary btn-sm">Show Completed</button>
+    </div>
+  </div> -->
+  <!-- <div class="row pt-4">
+    <div class="col">
+      <button class="btn btn-secondary btn-sm">Tags Group</button>
+      <button class="btn btn-secondary btn-sm">default</button>
+      <button class="btn btn-secondary btn-sm">Hobby</button>
+      <button class="btn btn-success btn-sm">Holiday</button>
+      <button class="btn btn-success text-light btn-sm">Financial</button>
+      <button class="btn btn-secondary btn-sm">Fun</button>
+      <button class="btn btn-success btn-sm">Emergency</button>
+      <button class="btn btn-secondary btn-sm text-light">Health</button>
+      <button class="btn btn-secondary btn-sm">Work</button>
+      <button class="btn btn-secondary btn-sm">Education</button>
+      <button class="btn btn-secondary btn-sm">Social</button>
+      <button class="btn btn-secondary btn-sm">Travel</button>
+    </div>
+  </div> -->
+  <div class="row pt-3 mt-3">
+    <div class="col-12">
+      <table class="table table-bordered table-striped table-sm">
+        <thead>
+          <tr>
+            <th><strong>Index</strong></th>
+            <th><strong>Task Name</strong></th>
+            <th><strong>Due Date</strong></th>
+            <th class="text-center"><strong>Tags</strong></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of taskList; track 'itemId') {
+
+          <tr>
+            <td style="text-align: center">{{ $index + 1 }}</td>
+            <td>
+              <div class="row">
+                <div class="col-1">
+                  <input type="checkbox" />
+                </div>
+                <div class="col-6">{{ item.taskName }}</div>
+                <div class="col-4 text-end">
+                  <i class="fa fa-close text-secondary px-3 text-danger"></i>
+                </div>
+              </div>
+            </td>
+            <td>{{ item.dueDate | date : "dd-MMM-yy" }}</td>
+            <td class="text-center">
+              <button
+                class="btn btn-primary btn-sm rounded-btn"
+                (click)="editTask(item)"
+              >
+                Edit
+              </button>
+              <button
+                class="btn btn-danger btn-sm rounded-btn"
+                (click)="deleteTask(item.itemId)"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
